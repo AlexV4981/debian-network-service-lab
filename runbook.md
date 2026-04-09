@@ -12,8 +12,8 @@ This runbook documents the setup, workflow, and monitoring procedures for the se
    - This loop ensures the server only runs when needed, optimizing resources.
 
 2. **Scripts**
-   - `hold.py` → Listens for an incoming connection on the server port and waits up to 10 minutes before booting the server.  
-   - `shutdown.py` → Monitors active users every 30 seconds and shuts down the server after 10 minutes of inactivity.  
+   - `hold.py` Listens for an incoming connection on the server port and waits up to 10 minutes before booting the server.  
+   - `shutdown.py` Monitors active users every 30 seconds and shuts down the server after 10 minutes of inactivity.  
 
 ---
 
@@ -23,3 +23,5 @@ Use the non-root server user:
 
 ```bash
 sudo -u <serveruser> systemctl start <server_name>.service
+
+```
