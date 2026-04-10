@@ -26,6 +26,14 @@ sudo -u <serveruser> systemctl start <server_name>.service
 
 ```
 ## Stopping the server
+
+Use the non-root server user:
+
 ```bash
 sudo -u <serveruser> systemctl stop <server_name>.service
+
+```
+## Monitor
+
+To be implemented with Wazuh
 
