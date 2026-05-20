@@ -1,7 +1,7 @@
 RCON Shutdown Log Overview
 
 Log Group: RCON Client Shutdown (Session #95)
-[14May2026 13:08:49.210] [RCON Client /127.0.0.1 #95/INFO] Thread RCON Client /localhost shutting down
+[14May2026 13:08:49.210] [RCON Client /localhost #95/INFO] Thread RCON Client /localhost shutting down
 
 What this shows:
 An active RCON session was closed. This typically happens when a remote console command finishes executing or when a client disconnects normally.
@@ -19,7 +19,7 @@ What this shows:
 An RCON client connection was created and then terminated almost immediately.
 
 Purpose of this event:
-This usually indicates an automated process (such as a script or health check) that opens an RCON connection, performs a quick action, and then closes it.
+This usually indicates an automated process such as a script or health check that opens an RCON connection, performs a quick action, and then closes it.
 
 ---
 
