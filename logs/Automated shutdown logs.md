@@ -32,17 +32,3 @@ An RCON client connection was created and then terminated almost immediately.
 This usually indicates an automated process such as a script or health check that opens an RCON connection, performs a quick action, and then closes it.
 
 ---
-
-## Log Group: Repeated RCON Cycle (Session #97)
-
-**RAW LOG:**
-```
-[14May2026 13:09:49.215] Thread RCON Client /localhost started
-[14May2026 13:09:49.216] Thread RCON Client /localhost shutting down
-```
-
-**What this shows:**
-The same pattern repeats: RCON starts, then immediately shuts down.
-
-**Purpose of this event:**
-Indicates a looping or scheduled automation process interacting with the server through RCON.
