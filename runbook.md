@@ -1,39 +1,7 @@
-# Self-Hosted Network Lab - Runbook
+# Operations runbook
 
-This runbook documents the setup, workflow, and monitoring procedures for the self-hosted network lab server. The system uses automated scripts to manage server uptime based on user activity.
+The setup, startup/shutdown lifecycle and manual validation steps are maintained in [docs/OPERATIONS.md](docs/OPERATIONS.md).
 
----
+The source implementations are [scripts/wake.py](scripts/wake.py) and [scripts/autoscale_shutdown.py](scripts/autoscale_shutdown.py). Earlier references to \`hold.py\` or \`shutdown.py\` are legacy filenames and should not be used for setup.
 
-## Workflow Overview
-
-1. **Startup Process**
-   - When the server service is started, the **shutdown monitoring script** (`shutdown.py`) also starts automatically.  
-   - The **shutdown script** monitors server activity and, if no users are detected for 10 minutes, shuts the server down and reactivates the **hold script** (`hold.py`) to wait for new connections.  
-   - This loop ensures the server only runs when needed, optimizing resources.
-
-2. **Scripts**
-   - `wake.py` Listens for an incoming connection on the server port and triggers shutdown.py.  
-   - `shutdown.py` Monitors active users every 30 seconds and shuts down the server after 10 minutes of inactivity.  
-
----
-
-## Starting the Server
-
-Use the non-root server user:
-
-```bash
-sudo -u <serveruser> systemctl start <server_name>.service
-
-```
-## Stopping the server
-
-Use the non-root server user:
-
-```bash
-sudo -u <serveruser> systemctl stop <server_name>.service
-
-```
-## Monitor
-
-To be implemented with Wazuh
-
+See the [architecture map](docs/ARCHITECTURE.md) and [security limits](SECURITY.md) before deploying.

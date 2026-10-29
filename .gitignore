@@ -1,0 +1,29 @@
+# Credentials and local host configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.token
+secrets/
+**/secrets/
+
+# Runtime output (documentation examples are .md)
+*.log
+*.sqlite
+*.sqlite3
+*.db
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+logs/*.txt
+*.zip
+*.tar
+*.tar.gz
+backups/
+data/
+.DS_Store

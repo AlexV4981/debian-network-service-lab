@@ -1,73 +1,47 @@
-# Sample Structured Log Output
+# Illustrative service-event examples
 
----
+The following are **synthetic, privacy-safe examples**, modeled on common server log formats. They are not a reproducible security detection test, actual private gameplay evidence, or a shipped SIEM pipeline.
 
-## Authentication Event
+## Connection event
 
-**RAW LOG:**
-```
-[09May2026 22:21:28.140] [Server thread/INFO] [net.minecraft.server.players.PlayerList/]: OliBird00[<IP>] logged in with entity id 108266 at (6614.903378633761, 63.0, -3959.019824697843)
-```
+**Example source:**
 
-**STRUCTURED LOG:**
-```
-[AUTH EVENT]
-User:       OliBird00
-Status:     Successful login
-Session ID: 108266
-Position:   (6614, 63, -3959)
-Notes:      Authentication successful. <IP>
-```
+~~~text
+[01Jan2026 12:00:00.000] [Server thread/INFO] [net.minecraft.server.players.PlayerList/]: example-player[<REDACTED_IP>] logged in with entity id 100 at (<REDACTED_POSITION>)
+~~~
 
----
+**Example interpretation:**
 
-## Gameplay Event
+~~~text
+[CONNECTION EVENT]
+Actor: example-player (synthetic)
+Status: Login observed
+Network address: redacted
+Location: redacted
+~~~
 
-**RAW LOG:**
-```
-[09May2026 22:21:47.434] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: gumgoos has made the advancement [Ice Bucket Challenge]
-```
+## Gameplay event
 
-**STRUCTURED LOG:**
-```
-[GAME EVENT]
-Player:      gumgoos
-Event:       Advancement unlocked
-Achievement: Ice Bucket Challenge
-```
+~~~text
+[01Jan2026 12:00:05.000] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: example-player has made a generic advancement
+~~~
 
----
+A source line may record gameplay activity. Do not treat a gameplay event as proof of authentication or authorization.
 
-## System Warning (Entity Desync)
+## Application warning
 
-**RAW LOG:**
-```
-[09May2026 22:21:55.224] [Server thread/WARN] [net.minecraft.world.level.entity.PersistentEntitySectionManager/]: Entity PokemonEntity['Wilbert'/100227, l='ServerLevel[world]', x=1411.50, y=91.91, z=-7404.82, removed=DISCARDED] wasn't found in section SectionPos{x=88, y=5, z=-463} (destroying due to DISCARDED)
-```
+~~~text
+[01Jan2026 12:00:10.000] [Server thread/WARN] [net.minecraft.world.level.entity.PersistentEntitySectionManager/]: ExampleEntity removed because its stored region state could not be found
+~~~
 
-**STRUCTURED LOG:**
-```
-[WARN - ENTITY SYSTEM]
-Entity:   PokemonEntity (Wilbert)
-Status:   Persistence mismatch detected
-Location: Chunk section desync
-Action:   Entity discarded by PersistentEntitySectionManager
-```
+Interpretation: an application warning that may need investigation; not independently an intrusion indicator.
 
----
+## Movement warning
 
-## Movement Anomaly
+~~~text
+[01Jan2026 12:00:15.000] [Server thread/WARN] [net.minecraft.server.network.ServerGamePacketListenerImpl/]: example-player moved too quickly! <REDACTED_VECTOR>
+~~~
 
-**RAW LOG:**
-```
-[09May2026 22:21:32.605] [Server thread/WARN] [net.minecraft.server.network.ServerGamePacketListenerImpl/]: MoogerV2 moved too quickly! 27.218456240145315,-5.0,-7.4172348593034485
-```
+Interpretation: a game movement sanity-check warning, not a confirmed malicious event.
 
-**STRUCTURED LOG:**
-```
-[WARN - PHYSICS]
-Player: MoogerV2
-Event:  Movement threshold exceeded
-        Velocity spike detected
-Status: Flagged by server movement validator
-```
+These examples describe **manual log interpretation**. A parser producing these event summaries, an active Wazuh agent, and a completed intrusion-detection pipeline are **not implemented** in this repository. See [the Python monitor](../scripts/autoscale_shutdown.py) for the actual log-fallback code.
