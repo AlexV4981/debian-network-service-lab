@@ -4,6 +4,15 @@
 
 I built this project to manage a service that starts when clients connect and stops after an idle period. It combines TCP communication, systemd service control, documented access policies, and operational logging.
 
+## Recruiter quick links: source first
+
+- [Python TCP handshake and wake-on-demand listener](https://github.com/AlexV4981/debian-network-service-lab/blob/main/scripts/wake.py)
+- [Python idle shutdown and RCON response checks](https://github.com/AlexV4981/debian-network-service-lab/blob/main/scripts/autoscale_shutdown.py)
+- [Documented UFW firewall defaults](https://github.com/AlexV4981/debian-network-service-lab/blob/main/configs/ufw_rules.conf)
+- [Operational runbook](https://github.com/AlexV4981/debian-network-service-lab/blob/main/runbook.md) · [Example logs](https://github.com/AlexV4981/debian-network-service-lab/blob/main/logs/Sample%20log%20output.md)
+
+These are lab examples with placeholder deployment configuration; source code and documentation do not independently establish a tested production deployment.
+
 ## Explore the Project
 
 ### [Cybersecurity Skills & Code](#cybersecurity-skills--code)
